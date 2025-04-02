@@ -240,15 +240,21 @@ Multiplexing allows simultaneous transmission of multiple signals across a singl
      - Synchronous TDM: Fixed time slots
      - Statistical/Asynchronous TDM: Dynamic allocation based on need
 
+![Noise](/images/Screenshot%202025-03-27%20at%2018.28.44.png)
+
 3. **Wavelength-Division Multiplexing (WDM)**
    - Similar to FDM but for optical signals
    - Multiple light sources combined into one single light
    - Uses prisms to combine/split light frequencies
    - Used in fiber-optic communications
 
+![Noise](/images/Screenshot%202025-03-27%20at%2018.28.53.png)
+
 ### Spread Spectrum
 
 Techniques that deliberately spread a signal in the frequency domain to increase security and resistance to interference.
+
+![Noise](/images/Screenshot%202025-03-27%20at%2018.29.05.png)
 
 **Key Characteristics:**
 - Expands bandwidth beyond what's needed (Bss >> B)
@@ -262,21 +268,36 @@ Techniques that deliberately spread a signal in the frequency domain to increase
    - Each transmission hops between frequencies
    - Provides security and allows bandwidth sharing among multiple users
 
+![Noise](/images/Screenshot%202025-03-27%20at%2018.29.18.png)
+
+For E xample M is 8 and k is 3. The pseudorandom code generator will create eight different 3-bit patterns.
+These are mapped to eight different frequencies in the frequency table as shown in the following figure.
+![Noise](/images/Screenshot%202025-03-27%20at%2018.29.30.png)
+
 2. **Direct Sequence Spread Spectrum (DSSS)**
    - Replaces each data bit with n bits (chips) using a spreading code
    - Chip rate is n times that of the data bit
    - Expands bandwidth while providing security
+
+![Noise](/images/Screenshot%202025-03-27%20at%2018.29.44.png)
+
+In the figure, the spreading code is 11 chips having the pattern 10110111000 (in this case). If the original signal
+rate is N, the rate of the spread signal is 11N. This means that the required bandwidth for the spread signal is 11
+times larger than the bandwidth of the original signal.
+![Noise](/images/Screenshot%202025-03-27%20at%2018.29.59.png)
 
 ## 2.5 Switching
 
 Switching is the process of forwarding data from one port to another toward its destination.
 
 **Categories of Switching:**
+![Noise](/images/Screenshot%202025-03-27%20at%2018.30.13.png)
 
 1. **Connectionless:** No prior handshaking required; data forwarded based on tables
 2. **Connection-Oriented:** Pre-established circuit required before data transmission
 
 ### Circuit Switching
+![Noise](/images/Screenshot%202025-03-27%20at%2018.30.22.png)
 
 - Dedicated communication path established between nodes
 - Three phases: circuit establishment, data transfer, circuit disconnect
@@ -285,6 +306,7 @@ Switching is the process of forwarding data from one port to another toward its 
 - **Disadvantages:** Inefficient resource use, long connection setup time
 
 ### Message Switching
+![Noise](/images/Screenshot%202025-03-27%20at%2018.30.38.png)
 
 - Messages transferred as complete units through intermediate nodes
 - Store-and-forward technique (each node stores entire message before forwarding)
@@ -293,6 +315,7 @@ Switching is the process of forwarding data from one port to another toward its 
 - **Disadvantages:** Not suitable for real-time applications, requires large storage capacity
 
 ### Packet Switching
+![Noise](/images/Screenshot%202025-03-27%20at%2018.30.59.png)
 
 - Message divided into smaller packets sent individually
 - Each packet contains header with addressing and sequencing information
@@ -302,16 +325,27 @@ Switching is the process of forwarding data from one port to another toward its 
   - **Virtual Circuit Switching:** Connection-oriented, preplanned route established
 - **Advantages:** Cost-effective, reliable, efficient
 - **Disadvantages:** Complex protocols, possible delays, potential packet loss
+![Noise](/images/Screenshot%202025-03-27%20at%2018.31.11.png)
 
 ## 2.6 Telephone, Mobile and Cable Networks for Data Communication
 
 ### Telephone Networks
 
 - Originally analog systems (POTS - Plain Old Telephone System)
+![Noise](/images/Screenshot%202025-03-27%20at%2018.31.22.png)
+The tasks of data transfer and signaling are separated in modern telephone network: data transfer is done by
+one network, signaling by another.
+![Noise](/images/Screenshot%202025-03-27%20at%2018.31.37.png)
+
 - Modern networks separate data transfer and signaling
 - Modems (modulator/demodulator) convert digital data to analog signals and vice versa
+![Noise](/images/Screenshot%202025-03-27%20at%2018.32.07.png)
+![Noise](/images/Screenshot%202025-03-27%20at%2018.32.19.png)
+
 - DSL (Digital Subscriber Line) technology provides high-speed digital communication over existing local loops
 - ADSL (Asymmetric DSL) designed for residential users with faster download than upload speeds
+![Noise](/images/Screenshot%202025-03-27%20at%2018.32.31.png)
+
 
 ### Cable Networks
 
@@ -319,7 +353,13 @@ Switching is the process of forwarding data from one port to another toward its 
 - Also known as Community Antenna Television (CATV)
 - **Types:**
   1. **Traditional Cable Networks:** Unidirectional communication
+![Noise](/images/Screenshot%202025-03-27%20at%2018.32.51.png)
   2. **Hybrid Fiber-Coaxial (HFC) Networks:** Bidirectional communication
+![Noise](/images/Screenshot%202025-03-27%20at%2018.33.09.png)
+![Noise](/images/Screenshot%202025-03-27%20at%2018.33.31.png)
+![Noise](/images/Screenshot%202025-03-27%20at%2018.33.40.png)
+![Noise](/images/Screenshot%202025-03-27%20at%2018.33.52.png)
+![Noise](/images/Screenshot%202025-03-27%20at%2018.34.05.png)
 
 ### Mobile Networks
 
