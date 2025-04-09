@@ -151,6 +151,12 @@ Flow control is the process of managing the rate of data transmission between tw
 
 Flow control methods can be categorized based on channel conditions:
 
+- speed matching mechanism
+- Flow control coordinates the amount of data that can be sent before receiving an ACK
+- A set of procedures that tells the sender how much data it can transmit before it must wait for an ACK from the receiver
+- Receiver has a limited speed at which it can process incoming data and a limited amount of memory in which to store incoming data
+- Receiver must inform the sender before the limits are reached and request that transmitter to send fewer frames or stop temporarily
+
 1. **Noiseless Channel Protocols**:
    - Simplest Protocol (no flow control)
    - Stop-and-Wait Protocol
