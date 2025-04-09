@@ -147,15 +147,16 @@ Bit stuffing is used in bit-oriented protocols to prevent bit patterns in the da
 
 Flow control is the process of managing the rate of data transmission between two nodes to prevent a fast sender from overwhelming a slow receiver.
 
-#### Flow Control Mechanisms:
-
-Flow control methods can be categorized based on channel conditions:
 
 - speed matching mechanism
 - Flow control coordinates the amount of data that can be sent before receiving an ACK
 - A set of procedures that tells the sender how much data it can transmit before it must wait for an ACK from the receiver
 - Receiver has a limited speed at which it can process incoming data and a limited amount of memory in which to store incoming data
 - Receiver must inform the sender before the limits are reached and request that transmitter to send fewer frames or stop temporarily
+
+#### Flow Control Mechanisms:
+
+Flow control methods can be categorized based on channel conditions:
 
 1. **Noiseless Channel Protocols**:
    - Simplest Protocol (no flow control)
