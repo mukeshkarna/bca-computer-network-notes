@@ -352,15 +352,41 @@ Error control in the data link layer involves both error detection and correctio
 1. **Single-Bit Error**: Only one bit in the data unit changes
 2. **Burst Error**: Multiple consecutive bits change, from first corrupted bit to last
 
-![Types of Errors](https://i.imgur.com/UGrwA8M.png)
+![Types of Errors](/images/Screenshot%202025-04-09%20at%2022.09.59.png)
 
 #### Error Detection Methods:
 
 1. **Parity Check**:
    - **Simple Parity**: Adds one bit to make total number of 1s even or odd
-   - **Two-dimensional Parity**: Creates parity bits for rows and columns
+      
+      - Receiver accepts data with even num ber of 1's
+      - When there are odd number of 1's in sender, then parity checker will append 1 to the data to make the count of 1's even
+      - If there were any transmission errors due to which the count of 1's becomes odd then receiver will reject
 
-![Parity Check](https://i.imgur.com/MpDDTW0.png)
+      **Performance of Parity Check**
+      - It can detect single bit error
+      - It can detect burst error only if the number of errors is odd
+
+
+      11100001 -> 10100001 -> receiver rejects
+
+      11100001 -> 10100101 -> receiver accepts
+
+![Parity Check](/images/parity%20check.png)
+
+   - **Two-dimensional Parity**: Creates parity bits for rows and columns
+      
+      - A block of bits is organized in rows and columns
+      - The parity bit is calculated for each column and sent along with the data
+      - The block of parity acts as the redundant bits 
+
+      **Performance**
+      - Increases the likelihood of detecting burst errors
+      - If 2 bits in one data units are damaged and two bits in exactly the same position in another data units are also damaged, the Redundancy checker will not detect an error
+
+![Parity Check](/images/LRC%20calculation.png)
+
+![Parity Check](/images/data%20after%20lrc.png)
 
 **Example** (Simple Parity):
 - Data: 1001001 (three 1s)
@@ -374,7 +400,7 @@ Error control in the data link layer involves both error detection and correctio
    - Complements sum to get checksum
    - Appends checksum to data
 
-![Checksum Process](https://i.imgur.com/xgQkh3V.png)
+![Checksum Process](/images/checksum.png)
 
 **Example**:
 - Data: 10011001 11100010 00100100 10000100
@@ -385,12 +411,30 @@ Error control in the data link layer involves both error detection and correctio
   - Transmitted: original data + 11011010
   - Verification: sum all segments + checksum = 11111111 → complement = 00000000 (no error)
 
+**Operation on Sender side**
+- Break the original message into `k` number of blocks with n bits in each block
+- Sum all the k data blocks
+- Add the carry to the sum, if any
+- Do 1's complement to the sum = checksum
+  ![Checksum Process](/images/checksum%20sender.png)
+
+**Operation on Receiver side**
+- Collect all the data blocks including the checksum
+- Sum all the data blocks and checksum
+- If the result is all 1's Accept, else Reject
+
+
+**Performance**
+- The checksum detects all errors involving and odd number of bits
+- It detects most errors involving an even number of bits
+- If one or more bits of a segments are damaged and the corresponding bit or bits of opposite value in a second segment are also damaged, the sum of those columns will not change and the receiver will not detect the errors
+
+  ![Checksum Process](/images/checksum%20receiver.png)
+
 3. **Cyclic Redundancy Check (CRC)**:
    - Based on binary division
    - Uses generator polynomial G(x)
    - More powerful than parity or checksum for burst errors
-
-![CRC Process](https://i.imgur.com/2mMjfYW.png)
 
 **CRC Process**:
 1. Choose generator polynomial G(x) of degree n
@@ -431,6 +475,12 @@ Error control in the data link layer involves both error detection and correctio
   ```
 - CRC = 101
 - Transmitted: 101100101
+
+### CRC Sender process
+![CRC Process](/images/crc%20sender.png)
+
+### CRC Receiver process
+![CRC Process](/images/crc%20receiver.png)
 
 **Properties of Good CRC Polynomials**:
 - Not divisible by x (detects burst errors of length equal to polynomial length)
