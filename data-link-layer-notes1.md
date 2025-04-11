@@ -555,21 +555,27 @@ HDLC is a bit-oriented protocol for communication over point-to-point and multip
    - Secondary can only transmit when polled by primary
    - Used in multipoint configurations
 
+![HDLC Frame Format](/images/nrm.png)
+
+
 2. **Asynchronous Balanced Mode (ABM)**:
    - Both stations act as primary and secondary
    - Either station can initiate transmission
    - Used in point-to-point configurations
+
+![HDLC Frame Format](/images/abm.png)
+
 
 3. **Asynchronous Response Mode (ARM)**:
    - Secondary can initiate transmission without permission
    - Primary still retains control
    - Rarely used today
 
-![HDLC Configurations](https://i.imgur.com/KlPUPFs.png)
+<!-- ![HDLC Configurations](https://i.imgur.com/KlPUPFs.png) -->
 
 #### HDLC Frame Format:
 
-![HDLC Frame Format](https://i.imgur.com/jUzpwRu.png)
+![HDLC Frame Format](/images/hdlc%20frame.png)
 
 - **Flag (8 bits)**: 01111110, marks beginning and end of frame
 - **Address (8+ bits)**: Identifies secondary station
@@ -578,6 +584,8 @@ HDLC is a bit-oriented protocol for communication over point-to-point and multip
 - **FCS (16 or 32 bits)**: Frame Check Sequence for error detection
 
 #### HDLC Frame Types:
+
+![HDLC Frame Format](/images/hdlc%20frame%20types.png)
 
 1. **Information (I) Frames**:
    - Carry user data
@@ -601,6 +609,8 @@ HDLC is a bit-oriented protocol for communication over point-to-point and multip
    - Control field format: 11 M P/F M
    - M bits specify function (e.g., SABM, DISC, UA, FRMR)
 
+![HDLC types](/images/hdlc%20type2.png)
+
 ### Point-to-Point Protocol (PPP)
 
 PPP is a data link protocol used for direct connections between two nodes, commonly used for Internet dial-up connections.
@@ -614,15 +624,15 @@ PPP is a data link protocol used for direct connections between two nodes, commo
 #### PPP Architecture:
 
 PPP consists of three main components:
-1. **Encapsulation**: Defines frame format
+1. **Encapsulation**: HDLC protocol for encapsulating datagrams over point-to-point links
 2. **Link Control Protocol (LCP)**: Establishes, configures, and tests the data-link connection
-3. **Network Control Protocols (NCPs)**: One for each network layer protocol supported
+3. **Network Control Protocols (NCPs)**: Family of Network Control Protocols (NCPs) to establish and configure different network layer protocols (IPv4, IPv6, AppleTalk, Novell IPX, and SNA Control Protocol)
 
-![PPP Architecture](https://i.imgur.com/n8E8GD9.png)
+![PPP Frame Format](/images/ppp%20components.png)
 
 #### PPP Frame Format:
 
-![PPP Frame Format](https://i.imgur.com/oQMq3xP.png)
+![PPP Architecture](/images/ppp%20frame.png)
 
 - **Flag (8 bits)**: 01111110, marks beginning and end of frame
 - **Address (8 bits)**: Always 11111111 (broadcast)
@@ -641,7 +651,7 @@ PPP goes through several phases during operation:
 4. **Network**: NCP configures network layer protocols
 5. **Terminate**: Link termination
 
-![PPP Phases](https://i.imgur.com/WoePvMw.png)
+![PPP Phases](/images/ppp%20operation%20phases.png)
 
 #### PPP Authentication Protocols:
 
@@ -650,6 +660,10 @@ PPP goes through several phases during operation:
    - Sends username/password in cleartext (insecure)
    - No protection against replay attacks
 
+![PPP Phases](/images/pap%20authentication.png)
+
+![PPP Phases](/images/pap%20process.png)
+
 2. **Challenge Handshake Authentication Protocol (CHAP)**:
    - Three-way handshake:
      1. Authenticator sends challenge
@@ -657,6 +671,12 @@ PPP goes through several phases during operation:
      3. Authenticator verifies response
    - More secure than PAP
    - Periodic verification during connection
+
+![PPP Phases](/images/chap%20authentication.png)
+
+![PPP Phases](/images/chap%20process%201.png)
+![PPP Phases](/images/chap%20process%202.png)
+
 
 ## 3.5 Channel Allocation Problem
 
