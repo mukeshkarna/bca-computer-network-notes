@@ -703,8 +703,6 @@ Where:
 - U = bits per frame
 - N = number of subchannels
 
-![Static Channel Allocation](https://i.imgur.com/DYdIqO6.png)
-
 ### Dynamic Channel Allocation
 
 Dynamic allocation assigns channel capacity based on demand.
@@ -726,24 +724,46 @@ Dynamic allocation assigns channel capacity based on demand.
 
 ## 3.6 Multiple Access
 
-Multiple access protocols allow multiple stations to share a medium.
+Multiple access protocols allow multiple stations to share a medium. If there is a dedicated link between the sender and the receiver then data link control layer is sufficient,however if there is one dedicated link present then multiple stations can access the channel simultaneously.
 
+Hence, multiple access protocols are required to decrease collision and avoid crosstalk.
+
+![Pure ALOHA](/images/multiple%20access%20protocol.png)
 ### 1. Random Access Methods
 
-Stations transmit whenever they have data without central coordination.
+- Stations transmit whenever they have data without central coordination.
+- In this, All stations have same priority, that is not station has more priority than another station. Any station can send data depending on mediums state (Idle or Busy)
+- Each station has the right to the medium without being controlled by any other station.
+- If more than one station tries to send, there is an access conflict (Collision) and frames will be either destroyed or modified
+
+### To avoid access conflict, each station follows a procedure
+- When can the station access the medium?
+- What can the station do if the medium is busy?
+- How can the station determine the success or failure of the transmission?
+- What can the station do if there is an access conflict?
 
 #### ALOHA
 
-The original random access protocol developed at the University of Hawaii.
+The original random access protocol developed at the University of Hawaii. It was actually designed for WLAN but it is also applicable for shared medium.
+In this, multiple stations can transmit data at the same time and can hence lead to collision and data being garbled.
 
 **Pure ALOHA**:
-- Stations transmit whenever they have data
+
+* Pure ALOHA allows stations to transmit whenever they have data to be sent.
+* When a station sends data it waits for an acknowledgement.
+* If the acknowledgement doesn't come within the allotted time then the station waits for a random amount of time called __back-off time (Tb)__ and re-sends the data.
+* Since different stations wait for different amount of time, the probability of further collision decreases.
+* The throughput of pure aloha is maximized when frames are of uniform length.
+
 - If collision occurs, retry after random time
 - Vulnerable period: 2 × frame transmission time
 - Throughput: S = G × e^(-2G)
 - Maximum throughput: 18.4% when G = 0.5
 
-![Pure ALOHA](https://i.imgur.com/pMQDz6v.png)
+![Pure ALOHA](/images/pure%20aloha.png)
+
+![Pure ALOHA](/images/pure%20aloha%20example.png)
+
 
 **Slotted ALOHA**:
 - Time divided into discrete slots equal to frame transmission time
@@ -752,7 +772,12 @@ The original random access protocol developed at the University of Hawaii.
 - Throughput: S = G × e^(-G)
 - Maximum throughput: 36.8% when G = 1
 
-![Slotted ALOHA](https://i.imgur.com/FgrcaEB.png)
+![Slotted ALOHA](/images/slotted%20aloha%20slot.png)
+
+![Slotted ALOHA](/images/slotted%20aloha.png)
+
+ **Pure and Slotted differences**
+![Slotted ALOHA](/images/pure-slotted%20diff.png)
 
 #### Carrier Sense Multiple Access (CSMA)
 
