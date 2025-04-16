@@ -754,6 +754,8 @@ In this, multiple stations can transmit data at the same time and can hence lead
 * If the acknowledgement doesn't come within the allotted time then the station waits for a random amount of time called __back-off time (Tb)__ and re-sends the data.
 * Since different stations wait for different amount of time, the probability of further collision decreases.
 * The throughput of pure aloha is maximized when frames are of uniform length.
+* Whenever two frames try to occupy the channel at the same time, there will be a collision and both will be garbled.
+* If the first bit of a new frame overlaps with just the last bit of a frame almost finished, both frames will be totally destroyed and both will have to be retransmitted later
 
 - If collision occurs, retry after random time
 - Vulnerable period: 2 × frame transmission time
@@ -766,6 +768,11 @@ In this, multiple stations can transmit data at the same time and can hence lead
 
 
 **Slotted ALOHA**:
+* It was developed just to improve the efficiency of pure aloha as the chances for collision in pure aloha are high.
+* The time of the shared channel is divided into discrete time intervals called slots.
+* Sending of data is allowed only at the beginning of these slots.
+* If a station misses out the allowed time, it must wait for the next slot. This reduces the probability of collision.
+
 - Time divided into discrete slots equal to frame transmission time
 - Stations can only begin transmission at slot boundaries
 - Vulnerable period: 1 frame transmission time
