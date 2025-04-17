@@ -797,17 +797,37 @@ CSMA improves on ALOHA by listening to the channel before transmitting.
    - If channel busy, continuously sense until idle, then transmit immediately
    - High collision probability with multiple waiting stations
 
+* Before sending the data, the station first listens to the channel to see if anyone else is transmitting the data at that moment.
+* If the channel is idle, the station transmits a frame.
+* If busy, then it senses the transmission medium continuously until it becomes idle.
+* Since the station transmits the frame with the probability of 1 when the carrier or channel is idle, this scheme of CSMA is called as 1-Persistent CSMA.
+* The propagation delay has an important effect on the performance of the protocol.
+* The longer the propagation delay, the more important this effect becomes, and the worse the performance of the protocol.
+
 2. **Non-persistent CSMA**:
    - If channel idle, transmit immediately
    - If channel busy, wait random time before checking again
    - Reduces collisions but increases delay
+
+* Before sending, a station senses the channel. If no one else is sending, the station begins doing so itself.
+* However, if the channel is already in use, the station does not continually sense it for the purpose of seizing it immediately upon detecting the end of the previous transmission.
+* Instead, it waits a random period of time and then repeats the algorithm. Consequently, this algorithm leads to better channel utilization but longer delays than 1-persistent CSMA. 
 
 3. **p-persistent CSMA**:
    - If channel idle, transmit with probability p, delay with probability 1-p
    - If channel busy, wait until idle and apply above rule
    - Compromise between 1-persistent and non-persistent
 
-![CSMA Persistence Methods](https://i.imgur.com/UoiAxpB.png)
+* It applies to slotted channels.
+* When a station becomes ready to send, it senses the channel.
+* If it is idle, it transmits with a probability P.
+* With a probability Q=1-P, it defers until the next slot.
+* If that slot is also idle, it either transmits or defers again, with probabilities P and Q.
+* This process is repeated until either the frame has been transmitted or another station has begun transmitting.
+* In the latter case, the unlucky station acts as if there had been a collision (i.e., it waits a random time and starts again).
+* If the station initially senses the channel busy, it waits until the next slot and applies the above
+
+![CSMA Persistence Methods](/images/persistent.png)
 
 **Vulnerable Time**: Propagation time (Tp)
 **Performance**: Much better than ALOHA, but collisions still possible
@@ -815,6 +835,16 @@ CSMA improves on ALOHA by listening to the channel before transmitting.
 #### CSMA/CD (Collision Detection)
 
 CSMA/CD extends CSMA by detecting collisions during transmission.
+* If two stations sense the channel to be idle and begin transmitting simultaneously, they will both detect the collision almost immediately.
+* Rather than finish transmitting their frames, which are irretrievably garbled anyway, they should abruptly stop transmitting as soon as the collision is detected.
+* Quickly terminating damaged frames saves time and bandwidth.
+* This protocol, known as CSMA/CD (CSMA with Collision Detection) is widely used on LANs in the MAC sublayer.
+* Access method used by Ethernet: CSMA/CD.
+* At the point marked t0 a station has finished transmitting its frame.
+* Any other station having a frame to send may now attempt to do so. If two or more stations decide to transmit simultaneously, there will be a collision.
+* Collisions can be detected by looking at the power or pulse width of the received signal and comparing it to the transmitted signal.
+* After a station detects a collision, it aborts its transmission, waits a random period of time, and then tries again, assuming that no other station has started transmitting in the meantime.
+* Therefore, model for CSMA/CD will consist of alternating contention and transmission periods, with idle periods occurring when all stations are quiet.
 
 **Process**:
 1. Station listens before transmitting
@@ -826,7 +856,7 @@ CSMA/CD extends CSMA by detecting collisions during transmission.
    - Waits random time using binary exponential backoff
    - Tries again
 
-![CSMA/CD Process](https://i.imgur.com/ZbQdxiP.png)
+![CSMA/CD Process](/images/csma%20cd.png)
 
 **Key Requirement**:
 - Minimum frame time ≥ 2 × maximum propagation time
@@ -838,6 +868,11 @@ CSMA/CD extends CSMA by detecting collisions during transmission.
 #### CSMA/CA (Collision Avoidance)
 
 CSMA/CA is designed for wireless networks where collision detection is difficult.
+* Carrier-sense multiple access with collision avoidance (CSMA/CA) is a network multiple access method in which carrier sensing is used, but nodes attempt to avoid collisions by beginning transmission only after the channel is sensed to be "idle".
+* It is particularly important for wireless networks, where the collision detection of the alternative CSMA/CD is not possible due to wireless transmitters desensing their receivers during packet transmission.
+* CSMA/CA is unreliable due to the hidden node problem and exposed terminal problem.
+* Solution: RTS/CTS exchange.
+* CSMA/CA is a protocol that operates in the Data Link Layer (Layer 2) of the OSI model.
 
 **Components**:
 1. **InterFrame Space (IFS)**: Waiting period after channel becomes idle
@@ -852,8 +887,6 @@ CSMA/CA is designed for wireless networks where collision detection is difficult
 5. After transmission, receiver waits SIFS (Short IFS) then sends ACK
 6. If no ACK received, assumes collision and retries
 
-![CSMA/CA Process](https://i.imgur.com/SbCqM6J.png)
-
 **Example**: Wi-Fi (IEEE 802.11)
 
 ### 2. Controlled Access Methods
@@ -863,7 +896,12 @@ In controlled access, stations coordinate to determine which station can transmi
 #### Reservation
 
 Stations reserve transmission time in advance.
-
+* A station need to make a reservation before sending data.
+* In each interval, a reservation frame precedes the data frames sent in that interval.
+* If there are N stations in the system, there are exactly N reservation minislots in the reservation frame.
+* Each minislot belongs to a station.
+* When a station needs to send a data frame, it makes a reservation in its own minislot.
+* The stations that have made reservations can send their data frames after the reservation frame.
 **Process**:
 1. Time divided into intervals
 2. Each interval begins with reservation frame containing reservation slots
@@ -871,7 +909,7 @@ Stations reserve transmission time in advance.
 4. Stations request transmission by marking their slot
 5. Stations transmit data in order of reservation
 
-![Reservation Process](https://i.imgur.com/QBWZ4UZ.png)
+![Reservation Process](/images/reservation.png)
 
 **Advantages**: No collisions once reservations are made
 **Disadvantages**: Overhead of reservation slots
@@ -881,8 +919,21 @@ Stations reserve transmission time in advance.
 A central controller (primary station) determines which station can transmit.
 
 **Functions**:
-1. **Select**: Primary sends SEL frame to allow secondary to receive
-2. **Poll**: Primary sends POLL frame to ask if secondary has data
+1. **Select**: If the primary wants to send data, it tells the secondary to get ready to receive.
+2. **Poll**: If the primary wants to receive data, it asks the secondaries if they have anything to send.
+
+* The polling protocol requires one of the nodes to be designated as a
+Master node (Primary station).
+* The master node polls each of the nodes in a round-robin fashion.
+* In particular, the master node first sends a message to node 1, saying that it (node 1) can transmit up to some maximum number of frames.
+* After node 1 transmits some frames, the master node tells node 2 it (node 2) can transmit up to the maximum number of frames.
+* The master node can determine when a node has finished sending its frames by observing the lack of a signal on the channel.
+
+* The procedure continues in this manner, with the master node polling each of the nodes in a cyclic manner.
+* The polling protocol eliminates the collision.
+* This allows polling to achieve a much higher efficiency.
+* The first drawback is that the protocol introduces a polling delay-the amount of time required to notify a node that it can transmit.
+* The second drawback, which is potentially more serious, is that if the master node fails, the entire channel becomes inoperative.
 
 **Process**:
 1. Primary polls each secondary in sequence
@@ -890,7 +941,7 @@ A central controller (primary station) determines which station can transmit.
 3. After receiving data, primary acknowledges
 4. Primary moves to next secondary
 
-![Polling Process](https://i.imgur.com/zG63XYj.png)
+![Polling Process](/images/polling.png)
 
 **Efficiency**: T_t/(T_t + T_poll)
 Where T_t is transmission time and T_poll is polling overhead
@@ -901,14 +952,22 @@ Where T_t is transmission time and T_poll is polling overhead
 #### Token Passing
 
 A special frame (token) grants permission to transmit.
-
+* A station is authorized to send data when it receives a special frame called a token.
+* Here there is no master node.
+* A small, special-purpose frame known as a token is exchanged among the nodes in some fixed order.
+* When a node receives a token, it holds onto the token only if it has some frames to transmit; otherwise, it immediately forwards the token to the next node.
+* If a node does have frames to transmit when it receives the token, it sends up to a maximum number of frames and then forwards the token to the next node.
+* Token passing is decentralized and highly efficient. But it has problems as well.
+* For example, the failure of one node can crash the entire channel. Or if a node accidentally neglects to release the token, then some recovery procedure must be invoked to get the token back in circulation.
 **Process**:
 1. Token circulates among stations in logical order
 2. Station with token can transmit for limited time
 3. After transmission or if no data, passes token to next station
 4. If token lost, recovery mechanisms activate
 
-![Token Passing](https://i.imgur.com/tJevUMd.png)
+![Token Passing](/images/token%20passing.png)
+
+![Token Passing](/images/token%20passin%202.png)
 
 **Network Arrangements**:
 - **Token Ring**: Physical ring topology
@@ -930,11 +989,18 @@ Where:
 
 ### 3. Channelization Methods
 
-Channelization divides the available channel capacity among stations.
+Channelization is a multiple-access method in which the available bandwidth of a link is shared in time, frequency, or through code, between different stations.
+
+**Multiplexing**
+* Multiplexing in computer networking means multiple signals are combined together thus travel simultaneously in a shared medium.
+* Multiplexing = Sharing the bandwidth.
 
 #### Frequency Division Multiple Access (FDMA)
 
 FDMA divides the frequency spectrum into bands for different stations.
+* In FDMA, the available bandwidth of the common channel is divided into bands that are separated by guard bands.
+* The available bandwidth is shared by all stations.
+* The FDMA is a data link layer protocol that uses FDM at the physical layer.
 
 **Characteristics**:
 - Each station assigned fixed frequency band
@@ -942,7 +1008,9 @@ FDMA divides the frequency spectrum into bands for different stations.
 - Station has exclusive use of its band
 - Simple implementation
 
-![FDMA](https://i.imgur.com/gSBj15p.png)
+![FDMA](/images/fdma1.png)
+
+![FDMA](/images/fdma.png)
 
 **Applications**:
 - AM/FM radio broadcasting
@@ -952,6 +1020,9 @@ FDMA divides the frequency spectrum into bands for different stations.
 #### Time Division Multiple Access (TDMA)
 
 TDMA divides time into slots for different stations.
+* In TDMA, the bandwidth is just one channel that is time shared between different stations.
+* The entire bandwidth is just one channel.
+* Stations share the capacity of the channel in time
 
 **Characteristics**:
 - Time divided into slots, assigned to stations
@@ -959,7 +1030,7 @@ TDMA divides time into slots for different stations.
 - Requires synchronization
 - More efficient use of bandwidth than FDMA
 
-![TDMA](https://i.imgur.com/5oDdFyU.png)
+![TDMA](/images/tdma.png)
 
 **Types**:
 - **Synchronous TDMA**: Fixed allocation of time slots
@@ -973,6 +1044,16 @@ TDMA divides time into slots for different stations.
 #### Code Division Multiple Access (CDMA)
 
 CDMA allows multiple stations to use the entire bandwidth simultaneously through code division.
+* In CDMA, one channel carries all transmissions simultaneously.
+* CDMA differs from FDMA because only one channel occupies the entire bandwidth of the link.
+* It differs from TOMA because all stations can send data simultaneously; there is no time
+
+The assigned codes have two properties:
+1. If we multiply each code by another, we get O.
+2. If we multiply each code by itself, we get 4 (the number of stations).
+Example:
+
+Data = (d₁.c₁ + d₂.c₂ + d₃.c₃+ d₄.c₄)Xc₁ = 4 x d₁
 
 **Characteristics**:
 - Based on spread spectrum technology
@@ -980,7 +1061,7 @@ CDMA allows multiple stations to use the entire bandwidth simultaneously through
 - All stations transmit on same channel simultaneously
 - Receiver extracts signal using code correlation
 
-![CDMA](https://i.imgur.com/RnQpqHW.png)
+![CDMA](/images/cdma.png)
 
 **Process**:
 1. Each bit multiplied by station's chip sequence
@@ -1449,8 +1530,11 @@ Understanding these concepts provides the foundation for reliable data communica
 1. Explain the difference between byte stuffing and bit stuffing with examples.
 
 2. A sender needs to send a frame of 1000 bits to a receiver using Stop-and-Wait protocol. Propagation delay is 5 ms and transmission rate is 100 kbps. Calculate:
+   
    a. Transmission time
+   
    b. Total time to send the frame and receive acknowledgment
+
    c. Channel utilization
 
 3. Using CRC with generator polynomial x³ + x + 1, compute the CRC for data 10110.
