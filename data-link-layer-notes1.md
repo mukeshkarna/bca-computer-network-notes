@@ -967,13 +967,11 @@ A special frame (token) grants permission to transmit.
 
 ![Token Passing](/images/token%20passing.png)
 
-![Token Passing](/images/token%20passin%202.png)
-
 **Network Arrangements**:
 - **Token Ring**: Physical ring topology
 - **Token Bus**: Physical bus with logical ring
 
-![Token Ring vs Token Bus](https://i.imgur.com/JwYWI5M.png)
+![Token Ring vs Token Bus](/images/token%20passin%202.png)
 
 **Performance**:
 - For a < 1: S = 1/(1 + a/N)
