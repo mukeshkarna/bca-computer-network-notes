@@ -1044,11 +1044,12 @@ TDMA divides time into slots for different stations.
 CDMA allows multiple stations to use the entire bandwidth simultaneously through code division.
 * In CDMA, one channel carries all transmissions simultaneously.
 * CDMA differs from FDMA because only one channel occupies the entire bandwidth of the link.
-* It differs from TOMA because all stations can send data simultaneously; there is no time
+* It differs from TDMA because all stations can send data simultaneously; there is no time
 
 The assigned codes have two properties:
 1. If we multiply each code by another, we get O.
 2. If we multiply each code by itself, we get 4 (the number of stations).
+
 Example:
 
 Data = (d₁.c₁ + d₂.c₂ + d₃.c₃+ d₄.c₄)Xc₁ = 4 x d₁
@@ -1095,11 +1096,11 @@ Common standards include:
 - **1000BASE-T**: 1 Gbps over twisted pair (Gigabit Ethernet)
 - **10GBASE-T**: 10 Gbps over twisted pair
 
-![Ethernet Evolution](https://i.imgur.com/VnIX0Qc.png)
+![Ethernet Evolution](/images/evolution%20of%20ethernet.png)
 
 #### Ethernet Frame Format
 
-![Ethernet Frame Format](https://i.imgur.com/7OA7LJ4.png)
+![Ethernet Frame Format](/images/ethernet%20frame%20format.png)
 
 - **Preamble (7 bytes)**: Alternating 1s and 0s for synchronization
 - **Start Frame Delimiter (1 byte)**: 10101011 marking frame start
@@ -1108,6 +1109,8 @@ Common standards include:
 - **Type/Length (2 bytes)**: Protocol type or frame length
 - **Data (46-1500 bytes)**: Actual payload data (minimum 46 bytes)
 - **FCS (4 bytes)**: CRC for error detection
+
+![Ethernet Frame Format](/images/ethernet%20min%20and%20max%20frame%20length.png)
 
 #### Ethernet Operation
 
@@ -1134,7 +1137,7 @@ Traditional Ethernet operates using CSMA/CD:
    - No collisions, no CSMA/CD needed
    - Higher throughput
 
-![Switched Ethernet](https://i.imgur.com/i9LnP1I.png)
+![Switched Ethernet](/images/switched%20ethernet.png)
 
 2. **Fast Ethernet (100 Mbps)**:
    - 100BASE-TX, 100BASE-FX
@@ -1151,9 +1154,35 @@ Traditional Ethernet operates using CSMA/CD:
    - Full-duplex only, no CSMA/CD
    - Focus on fiber optic and enhanced twisted pair
 
+### Pros of Ethernet
+* Ethernet is the most widely used wired LAN technology.
+* Ethernet is relatively inexpensive.
+* In Ethernet, all the node have the same privileges. It does not follow client-server architecture.
+* Maintenance and administration are simple.
+* The cable used to connect systems in ethernet is robust to noise.
+* As it is robust to the noise, the quality of the data transfer does not degrade. The data transfer quality is good.
+* With latest versions such as gigabit ethernet, the transfer speeds in Gbos have become possible.
+
+
+### Cons of Ethernet
+* Under heavy loads, too much of the network's capacity is wasted by collisions.
+* It does not hold good for real-time applications and interactive applications.
+* As the network cannot set priority for the packets, it is not suitable for a client-server architecture.
+* For interactive applications, dummy data have to be fed to make the frame size 46B which is mandatory.
+* After receiving a packet, the receiver doesn't send any acknowledgement
+
 ### Fiber Distributed Data Interface (FDDI)
 
-FDDI is a high-speed fiber optic token ring network technology.
+* FDDI is a set of ANSI and ISO standards for transmission of data in local area network (LAN) over fiber optic cables.
+* It is applicable in large LANs that can extend up to 200 kilometers in diameter.
+* FDDI uses optical fiber as its physical medium.
+* It operates in the physical and medium access control (MAC layer) of the Open Systems Interconnection (OSI) network model.
+* It provides high data rate of 100 Mbps and can support thousands of users.
+* It is used in LANs up to 200 kilometers for long distance voice and multimedia communication.
+* It uses ring based token passing mechanism and is derived from IEEE 802.4 token bus standard.
+* It contains two token rings, a primary ring for data and token transmission and a secondary ring that provides backup if the primary ring fails.
+* FDDI technology can also be used as a backbone for a wide area network (WAN).
+
 
 **Characteristics**:
 - 100 Mbps data rate
@@ -1162,7 +1191,7 @@ FDDI is a high-speed fiber optic token ring network technology.
 - Maximum network diameter of 200 kilometers
 - Support for thousands of stations
 
-![FDDI Dual Ring](https://i.imgur.com/a5ysFRM.png)
+![FDDI Dual Ring](/images/fddi.png)
 
 #### FDDI Architecture
 
@@ -1179,7 +1208,7 @@ FDDI uses a dual ring architecture:
 
 #### FDDI Frame Format
 
-![FDDI Frame Format](https://i.imgur.com/ZNuxRQY.png)
+![FDDI Frame Format](/images/fddi%20frame.png)
 
 - **Preamble (1 byte)**: For synchronization
 - **Start Delimiter (1 byte)**: Marks frame beginning
@@ -1219,7 +1248,9 @@ Basic components of 802.11 networks:
 - **Distribution System (DS)**: System connecting multiple APs
 - **Extended Service Set (ESS)**: Multiple BSSs connected by DS
 
-![802.11 Architecture](https://i.imgur.com/vIFcZKm.png)
+![802.11 Architecture](/images/wifi%201.png)
+
+![802.11 Architecture](/images/wifi%202.png)
 
 #### MAC Sublayer
 
@@ -1236,7 +1267,6 @@ IEEE 802.11 defines two MAC sublayers:
    - Provides both asynchronous and time-bounded service
    - Rarely implemented in commercial products
 
-![802.11 MAC Sublayers](https://i.imgur.com/LYbhBCg.png)
 
 #### CSMA/CA in 802.11
 
@@ -1258,28 +1288,43 @@ The CSMA/CA process in 802.11:
    - Random delay before transmission attempt
    - Contention window doubles after each collision
 
-![CSMA/CA Process](https://i.imgur.com/GpGEDKU.png)
-
 **Hidden Terminal Problem**:
 - Stations unable to detect each other's transmissions
 - Solved using RTS/CTS mechanism
 
-![Hidden Terminal Problem](https://i.imgur.com/q1H1JT0.png)
 
 #### 802.11 Frame Format
 
-![802.11 Frame Format](https://i.imgur.com/xnpBXMR.png)
 
-- **Frame Control (2 bytes)**: Type, subtype, flags
-- **Duration/ID (2 bytes)**: Sets NAV value
+- **Frame Control (2 bytes)**: Type, subtype, flags (11 subfields)
+   
+   - **Protocol Version**: A 2 bit field set to 00. it has been included to allow future versions of IEEE 802.11 to operate simultaneously
+   - **Type**: It is a 2 bit sub field that specifies whether the frame is a data frame, control frame or a management frame
+   - **Subtype**: 4 bit subfield, states whether the field is a request to send (RTS) or Clear to Send (CTS) control frame. for the regular data frame, the value is set to 0000
+   - **To DS**: 1 bit subfield indicating whether the frame is going to the access point, which coorinates the communications in centralized wireless systems
+   - **From DS**: 1 bit subfield indicating whether the fram is coming from the access point
+   - **More Fragments**: 1 bit subfield which when set to 1 indicates that more fragments would follow
+   - **Retry**: 1 bit subfield which when set to 1 specifies retransmission of a previous frame
+   - **Power Management**: 1 bit subfield indicating that the sender is adopting power-save mode
+   - **More Data**: 1 bit subfield showing that sender has further data frames for the receiver
+   - **WEP**: 1 bit subfield indicating that this is an encrypted frame
+   - **Order**: 1 bit subfield, informs the receiver that to the higher layers the frames should be an ordered sequence
+
+- **Duration/ID (2 bytes)**: specifies the time period for which the frame and its acknowledgement occupy the channel
 - **Addresses**: Four address fields for:
   - Source address
   - Destination address
   - Transmitting station address
   - Receiving station address
-- **Sequence Control (2 bytes)**: For fragmenting and reassembling
-- **Data (0-2312 bytes)**: Actual payload
+
+  ![Frame format](/images/address%201.png)
+
+  ![Frame format](/images/address%202.png)
+
+- **Sequence Control (2 bytes)**: It a 2 bytes field that stores the frame numbers. It detects duplicate frames and determines the order of frames for higher layers. Among the 16 bits, the first 4 bits provides identification to the fragment and the rest 12 bits contain the sequence number that increments with each transmission.
+- **Data (0-2312 bytes)**: Actual payload, max size- 2315 bytes
 - **FCS (4 bytes)**: CRC for error detection
+![Frame format](/images/wifi%20frame%20format.png)
 
 #### IEEE 802.11 Standards
 
@@ -1305,7 +1350,7 @@ Bluetooth is a wireless technology standard for exchanging data over short dista
 - Low power consumption
 - Ad-hoc network formation
 
-![Bluetooth Concept](https://i.imgur.com/9i7c0Iv.png)
+![Bluetooth Protocol Stack](/images/bluetooth.png)
 
 #### Bluetooth Device Classes
 
@@ -1321,7 +1366,18 @@ Bluetooth devices are classified by power and range:
 
 Bluetooth uses a layered protocol architecture:
 
-![Bluetooth Protocol Stack](https://i.imgur.com/U3P3EPO.png)
+* Bluetooth is specified by an industry consortium called the Bluetooth
+Special Interest Group.
+* It specifies an entire suite of protocols, going beyond the link layer to define application protocols, which it calls profiles, for a range of applications.
+• There is a profile for synchronizing a PDA with personal computer.
+• Another profile gives a mobile computer access to a wired LAN.
+* The basic Bluetooth network configuration is called a piconet.
+• Consists of a master device and up to seven slave devices.
+• Any communication is between the master and a slave.
+• The slaves do not communicate directly with each other.
+• A slave can be parked: set to an inactive, low-power state.
+
+![Bluetooth Protocol Stack](/images/Basic-diagram-of-Bluetooth-protocol-stack.png)
 
 **Core Protocols**:
 - **Radio**: Physical layer specification
@@ -1346,14 +1402,14 @@ Bluetooth uses a layered protocol architecture:
    - Up to 255 parked devices (inactive)
    - All devices share master's clock and hopping sequence
 
-![Bluetooth Piconet](https://i.imgur.com/CGGqT0U.png)
+![Bluetooth Piconet](/images/piconet.png)
 
 2. **Scatternet**:
    - Multiple interconnected piconets
    - Device can be master in one piconet, slave in another
    - Allows extending network range and capacity
 
-![Bluetooth Scatternet](https://i.imgur.com/IM0dvj5.png)
+![Bluetooth Scatternet](/images/scatternet.png)
 
 #### Bluetooth Security
 
