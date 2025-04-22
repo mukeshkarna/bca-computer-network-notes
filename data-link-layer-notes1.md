@@ -1443,7 +1443,9 @@ Token Bus combines logical ring control with physical bus topology.
 - Token passed to next logical station (not physically adjacent)
 - Used primarily in industrial automation
 
-![Token Bus Architecture](https://i.imgur.com/E85mPcR.png)
+![Token Bus Architecture](/images/token%20bus.png)
+
+![Token Bus Architecture](/images/token%20bus%20frame.png)
 
 **Operation**:
 1. Stations organized in logical ring
@@ -1467,7 +1469,7 @@ Token Ring uses token passing on a physical ring topology.
 - Station can transmit only when it has the token
 - Data flows in one direction around ring
 
-![Token Ring Architecture](https://i.imgur.com/1nrZCcH.png)
+![Token Ring Architecture](/images/token%20ring.png)
 
 **Frame Transmission Process**:
 1. Station waits for token
@@ -1488,7 +1490,7 @@ Token Ring uses token passing on a physical ring topology.
 - **Ending Delimiter**: Marks end of frame
 - **Frame Status**: Contains acknowledgment bits
 
-![Token Ring Frame Format](https://i.imgur.com/NVcv4Y7.png)
+![Token Ring Frame Format](/images/token%20ring%20frame.png)
 
 **Token Ring Features**:
 - **Priority System**: Higher priority traffic can preempt lower
@@ -1505,7 +1507,7 @@ VLAN is a logical grouping of network devices regardless of physical location.
 - Creates separate broadcast domains within a switch
 - Devices in same VLAN communicate as if on same LAN
 
-![VLAN Concept](https://i.imgur.com/cxEqGHM.png)
+![VLAN Concept](/images/vlan%20concept.png)
 
 #### Types of VLANs
 
@@ -1514,8 +1516,6 @@ VLAN is a logical grouping of network devices regardless of physical location.
    - Device connected to port becomes part of that VLAN
    - Simple configuration but less flexible
    - Most common implementation
-
-![Port-Based VLAN](https://i.imgur.com/Q8g9rCu.png)
 
 2. **MAC Address-Based (Dynamic) VLAN**:
    - VLAN membership based on device's MAC address
@@ -1539,7 +1539,7 @@ VLAN trunking allows multiple VLANs to travel over a single link:
 - **VLAN Tagging**: Identifies VLAN membership in frame
 - **Trunk Links**: Carry traffic for multiple VLANs between switches
 
-![VLAN Trunking](https://i.imgur.com/xK1IzpY.png)
+![VLAN Trunking](/images/vlan.png)
 
 #### Benefits of VLANs
 
@@ -1557,7 +1557,6 @@ VLAN trunking allows multiple VLANs to travel over a single link:
 - **Implementation Costs**: Requires VLAN-capable switches
 - **Scalability**: Limited by switch capabilities
 
-![Inter-VLAN Routing](https://i.imgur.com/MZJP4sK.png)
 
 ## Summary of Key Concepts
 
