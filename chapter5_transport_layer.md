@@ -4,10 +4,10 @@
 
 The Transport Layer in the Open System Interconnection (OSI) model is responsible for end-to-end delivery over a network. Whereas the network layer is concerned with the end-to-end delivery of individual packets and it does not recognize any relationship between those packets.
 
-• This layer treats each packet independently because each packet belongs to a different message.
-• The transport layer ensures that each message should reach its destination completely and in order so that it maintains error and flow control to the source to destination to ensure proper data transmission.  
-• The transport layer establishes a connection between two end ports. A connection is a single logical path from source to destination which is associated with all the packets in a message.
-• Transport Layer uses some standard protocols to enhance its functionalities are TCP (Transmission Control Protocol), UDP (User Datagram Protocol), DCCP (Datagram Congestion Control Protocol), etc.
+- This layer treats each packet independently because each packet belongs to a different message.
+- The transport layer ensures that each message should reach its destination completely and in order so that it maintains error and flow control to the source to destination to ensure proper data transmission.  
+- The transport layer establishes a connection between two end ports. A connection is a single logical path from source to destination which is associated with all the packets in a message.
+- Transport Layer uses some standard protocols to enhance its functionalities are TCP (Transmission Control Protocol), UDP (User Datagram Protocol), DCCP (Datagram Congestion Control Protocol), etc.
 
 ![Transport Layer Relationship](relationship_diagram.png)
 *Figure shows the relationship of the transport layer to the network and session layer.*
@@ -18,14 +18,14 @@ Specific functions of the transport layer are as follows:
 
 ### 1. Service-point addressing
 
-• Computers often run many programs at the same time. Due to this, source-to-destination delivery means delivery from a specific job (currently running program) on one computer to a specific job (currently running program) on the other system not only one computer to the next.
-• For this reason, the transport layer added a specific type of address to its header, it is referred to as a service point address or port address.
-• By this address each packet reaches the correct computer and also the transport layer gets the complete message to the correct process on that computer.
+- Computers often run many programs at the same time. Due to this, source-to-destination delivery means delivery from a specific job (currently running program) on one computer to a specific job (currently running program) on the other system not only one computer to the next.
+- For this reason, the transport layer added a specific type of address to its header, it is referred to as a service point address or port address.
+- By this address each packet reaches the correct computer and also the transport layer gets the complete message to the correct process on that computer.
 
 ### 2. Segmentation and Reassembly
 
-• In segmentation, a message is divided into transmittable segments; each segment containing a sequence number. This number enables this layer to reassemble the message.
-• Upon arriving at its destination system message is reassembled correctly, identify and replaces packets that were lost in transmission.
+- In segmentation, a message is divided into transmittable segments; each segment containing a sequence number. This number enables this layer to reassemble the message.
+- Upon arriving at its destination system message is reassembled correctly, identify and replaces packets that were lost in transmission.
 
 ### 3. Connection Control
 
@@ -34,12 +34,12 @@ It can be either of two types:
 - **Connection Oriented Transport Layer**
 
 #### i) Connectionless Transport Layer
-• This Transport Layer treats each packet as an individual and delivers it to the destination machine.
-• In this type of transmission, the receiver does not send an acknowledgment to the sender about the receipt of a packet. This is a faster communication technique.
+- This Transport Layer treats each packet as an individual and delivers it to the destination machine.
+- In this type of transmission, the receiver does not send an acknowledgment to the sender about the receipt of a packet. This is a faster communication technique.
 
 #### ii) Connection Oriented Transport Layer
-• This Transport Layer creates a connection with the Transport Layer at the destination machine before transmitting the packets to the destination.
-• To Create a connection following three steps are possible:
+- This Transport Layer creates a connection with the Transport Layer at the destination machine before transmitting the packets to the destination.
+- To Create a connection following three steps are possible:
   - Connection establishment
   - Data transfer
   - Connection termination
@@ -48,22 +48,22 @@ When all the data are transmitted connection is terminated. Connectionless Servi
 
 ### 4. Multiplexing and Demultiplexing
 
-• Multiple packets from diverse applications are transmitted across a network needs very dedicated control mechanisms, which are found in the transport layer.
-• The transport layer accepts packets from different processes. These packets are differentiated by their port numbers and pass them to the network layer after adding proper headers.
-• In Demultiplexing, at the receiver's side to obtain the data coming from various processes. It receives the segments of data from the network layer and delivers it to the appropriate process running on the receiver's machine.
+- Multiple packets from diverse applications are transmitted across a network needs very dedicated control mechanisms, which are found in the transport layer.
+- The transport layer accepts packets from different processes. These packets are differentiated by their port numbers and pass them to the network layer after adding proper headers.
+- In Demultiplexing, at the receiver's side to obtain the data coming from various processes. It receives the segments of data from the network layer and delivers it to the appropriate process running on the receiver's machine.
 
 ### 5. Flow control
 
-• The transport layer also responsible for the flow control mechanism between the adjacent layers of the TCP/IP model.
-• It does not perform across a single link even it performs an end-to-end node.
-• By imposing flow control techniques data loss can be prevented from the cause of the sender and slow receiver.
-• For instance, it uses the method of sliding window protocol in this method receiver sends a window back to the sender to inform the size of the data is received.
+- The transport layer also responsible for the flow control mechanism between the adjacent layers of the TCP/IP model.
+- It does not perform across a single link even it performs an end-to-end node.
+- By imposing flow control techniques data loss can be prevented from the cause of the sender and slow receiver.
+- For instance, it uses the method of sliding window protocol in this method receiver sends a window back to the sender to inform the size of the data is received.
 
 ### 6. Error Control
 
-• Error Control is also performed end to end like the data link layer.
-• In this layer to ensure that the entire message arrives at the receiving transport layer without any error(damage, loss or duplication). Error Correction is achieved through retransmission of the packet.
-• The data has arrived or not and checks for the integrity of data, it uses the ACK and NACK services to inform the sender.
+- Error Control is also performed end to end like the data link layer.
+- In this layer to ensure that the entire message arrives at the receiving transport layer without any error(damage, loss or duplication). Error Correction is achieved through retransmission of the packet.
+- The data has arrived or not and checks for the integrity of data, it uses the ACK and NACK services to inform the sender.
 
 ## 5.2 Elements of Transport Protocols
 
@@ -88,13 +88,13 @@ The reliable delivery has four aspects:
 - Duplication control
 
 #### Error Control
-• The primary role of reliability is Error Control. In reality, no transmission will be 100 percent error-free delivery. Therefore, transport layer protocols are designed to provide error-free transmission.
-• The data link layer also provides the error handling mechanism, but it ensures only node-to-node error-free delivery. However, node-to-node reliability does not ensure the end-to-end reliability.
-• The data link layer checks for the error between each network. If an error is introduced inside one of the routers, then this error will not be caught by the data link layer. It only detects those errors that have been introduced between the beginning and end of the link. Therefore, the transport layer performs the checking for the errors end-to-end to ensure that the packet has arrived correctly.
+- The primary role of reliability is Error Control. In reality, no transmission will be 100 percent error-free delivery. Therefore, transport layer protocols are designed to provide error-free transmission.
+- The data link layer also provides the error handling mechanism, but it ensures only node-to-node error-free delivery. However, node-to-node reliability does not ensure the end-to-end reliability.
+- The data link layer checks for the error between each network. If an error is introduced inside one of the routers, then this error will not be caught by the data link layer. It only detects those errors that have been introduced between the beginning and end of the link. Therefore, the transport layer performs the checking for the errors end-to-end to ensure that the packet has arrived correctly.
 
 #### Sequence Control
-• The second aspect of the reliability is sequence control which is implemented at the transport layer.
-• On the sending end, the transport layer is responsible for ensuring that the packets received from the upper layers can be used by the lower layers. On the receiving end, it ensures that the various segments of a transmission can be correctly reassembled.
+- The second aspect of the reliability is sequence control which is implemented at the transport layer.
+- On the sending end, the transport layer is responsible for ensuring that the packets received from the upper layers can be used by the lower layers. On the receiving end, it ensures that the various segments of a transmission can be correctly reassembled.
 
 #### Loss Control
 Loss Control is a third aspect of reliability. The transport layer ensures that all the fragments of a transmission arrive at the destination, not some of them. On the sending end, all the fragments of transmission are given sequence numbers by a transport layer. These sequence numbers allow the receiver's transport layer to identify the missing segment.
@@ -110,9 +110,9 @@ Flow control is used to prevent the sender from overwhelming the receiver. If th
 ![Addressing](addressing_diagram.png)
 *TSAPs, NSAPs and transport connections.*
 
-• According to the layered model, the transport layer interacts with the functions of the session layer. Many protocols combine session, presentation, and application layer protocols into a single layer known as the application layer. In these cases, delivery to the session layer means the delivery to the application layer. Data generated by an application on one machine must be transmitted to the correct application on another machine. In this case, addressing is provided by the transport layer.
-• The transport layer provides the user address which is specified as a station or port. The port variable represents a particular TS user of a specified station known as a Transport Service access point (TSAP). Each station has only one transport entity.
-• The transport layer protocols need to know which upper-layer protocols are communicating.
+- According to the layered model, the transport layer interacts with the functions of the session layer. Many protocols combine session, presentation, and application layer protocols into a single layer known as the application layer. In these cases, delivery to the session layer means the delivery to the application layer. Data generated by an application on one machine must be transmitted to the correct application on another machine. In this case, addressing is provided by the transport layer.
+- The transport layer provides the user address which is specified as a station or port. The port variable represents a particular TS user of a specified station known as a Transport Service access point (TSAP). Each station has only one transport entity.
+- The transport layer protocols need to know which upper-layer protocols are communicating.
 
 ### Connection Establishment
 
@@ -181,20 +181,20 @@ Sender              Receiver
 *(a) Upward multiplexing. (b) Downward multiplexing.*
 
 #### Multiplexing & De-multiplexing
-• The addressing mechanism allows multiplexing and De-multiplexing by the transport layer
+- The addressing mechanism allows multiplexing and De-multiplexing by the transport layer
 
 ##### Multiplexing
-• At the sender site, there may be several processes that need to send packets. However, there is only one transport layer protocol at any time. This is a many-to-one relationship and requires multiplexing.
-• The protocol accepts messages from different processes, differentiated by their assigned port numbers. After adding the header, the transport layer passes the packet to the network layer
+- At the sender site, there may be several processes that need to send packets. However, there is only one transport layer protocol at any time. This is a many-to-one relationship and requires multiplexing.
+- The protocol accepts messages from different processes, differentiated by their assigned port numbers. After adding the header, the transport layer passes the packet to the network layer
 
 ##### De-multiplexing
-• At the receiver site, the relationship is one-to-many and requires Demultiplexing. The transport layer receives datagrams from the network layer.
-• After error checking and dropping of the header, the transport layer delivers each message to the appropriate process based on the port number
+- At the receiver site, the relationship is one-to-many and requires Demultiplexing. The transport layer receives datagrams from the network layer.
+- After error checking and dropping of the header, the transport layer delivers each message to the appropriate process based on the port number
 
 ### CRASH RECOVERY
 
-• Hosts and routers are subject to crash.
-• Router crash is easier to handle since transport entities are alive at the host, routers are only intermediate nodes which forwards packet, they do not have transport layer entity.
+- Hosts and routers are subject to crash.
+- Router crash is easier to handle since transport entities are alive at the host, routers are only intermediate nodes which forwards packet, they do not have transport layer entity.
 
 **How to recover from host crashes?**
 One client(host) is sending a file to server(receiver host). Transport layer at server simply passes TPDU to transport layer. While transmission was ongoing, server crashes.
@@ -232,14 +232,14 @@ Though Transmission Control Protocol (TCP) is the dominant transport layer proto
 User Datagram Protocol (UDP) is more efficient in terms of both latency and bandwidth.
 
 ### Uses of UDP/Features
-• UDP is used when acknowledgement of data does not hold any significance.
-• UDP is good protocol for data flowing in one direction.
-• UDP is simple and suitable for query based communications.
-• UDP is not connection oriented.
-• UDP does not provide congestion control mechanism.
-• UDP does not guarantee ordered delivery of data.
-• UDP is stateless.
-• UDP is suitable protocol for streaming applications such as VoIP, multimedia streaming.
+- UDP is used when acknowledgement of data does not hold any significance.
+- UDP is good protocol for data flowing in one direction.
+- UDP is simple and suitable for query based communications.
+- UDP is not connection oriented.
+- UDP does not provide congestion control mechanism.
+- UDP does not guarantee ordered delivery of data.
+- UDP is stateless.
+- UDP is suitable protocol for streaming applications such as VoIP, multimedia streaming.
 
 ### UDP Header
 
@@ -249,11 +249,11 @@ User Datagram Protocol (UDP) is more efficient in terms of both latency and band
 
 ### UDP Application
 Here are few applications where UDP is used to transmit data:
-• Domain Name Services
-• Simple Network Management Protocol
-• Trivial File Transfer Protocol
-• Routing Information Protocol
-• Kerberos
+- Domain Name Services
+- Simple Network Management Protocol
+- Trivial File Transfer Protocol
+- Routing Information Protocol
+- Kerberos
 
 ### UDP Operation
 
@@ -313,16 +313,16 @@ The sending side of rdt simply accepts data from the upper-layer via the `rdt_se
 A more realistic model of the underlying channel is one in which bits in a packet may be corrupted. Such bit errors typically occur in the physical components of a network as a packet is transmitted, propagates, or is buffered. We'll continue to assume for the moment that all transmitted packets are received (although their bits may be corrupted) in the order in which they were sent.
 
 Fundamentally, two additional protocol capabilities are required in ARQ protocols to handle the presence of bit errors:
-• Error detection
-• Receiver feedback
+- Error detection
+- Receiver feedback
 
 ![rdt2.0 FSM](rdt2_0.png)
 *Figure: rdt2.0 - a protocol for a channel with bit-errors*
 
 Consider three possibilities for handling corrupted ACKs or NAKs:
-• A first possibility: The speaker would probably ask "What did you say?" (thus introducing a new type of sender-to-receiver packet to our protocol).
-• A second alternative: Add enough checksum bits to allow the sender to not only detect, but recover from, bit errors.
-• A third approach: For the sender to simply resend the current data packet when it receives a garbled ACK or NAK packet.
+- A first possibility: The speaker would probably ask "What did you say?" (thus introducing a new type of sender-to-receiver packet to our protocol).
+- A second alternative: Add enough checksum bits to allow the sender to not only detect, but recover from, bit errors.
+- A third approach: For the sender to simply resend the current data packet when it receives a garbled ACK or NAK packet.
 
 #### rdt2.1: sender, handles garbled ACK/NAKs
 
@@ -361,8 +361,8 @@ Because packet sequence numbers alternate between 0 and 1, protocol rdt3.0 is so
 
 Protocol pipelining is a technique in which multiple requests are written out to a single socket without waiting for the corresponding responses (acknowledged). Pipelining can be used in various application layer network protocols, like HTTP/1.1, SMTP and FTP.
 
-• Range of sequence numbers must be increased.
-• Data or Packet should be buffered at sender and/or receiver.
+- Range of sequence numbers must be increased.
+- Data or Packet should be buffered at sender and/or receiver.
 
 ![Stop-and-wait vs Pipelined](pipelined.png)
 *Figure: Stop-and-wait versus pipelined protocols*
@@ -385,15 +385,15 @@ Two generic forms of pipelined protocols are:
 | 6 | Acknowledgement | Acknowledgement type is cumulative. | Acknowledgement type is individual. |
 
 ### Go-Back-N (GBN)
-• Retransmits all the frames that sent after the frame which suspects to be damaged or lost.
-• If error rate is high, it wastes a lot of bandwidth.
-• Less complicated.
-• Window size N-1
-• Sorting is neither required at sender side nor at receiver side.
-• Receiver does not store the frames received after the damaged frame until the damaged frame is retransmitted.
-• No searching of frame is required neither on sender side nor on receiver
-• NAK number refer to the next expected frame number.
-• It more often used.
+- Retransmits all the frames that sent after the frame which suspects to be damaged or lost.
+- If error rate is high, it wastes a lot of bandwidth.
+- Less complicated.
+- Window size N-1
+- Sorting is neither required at sender side nor at receiver side.
+- Receiver does not store the frames received after the damaged frame until the damaged frame is retransmitted.
+- No searching of frame is required neither on sender side nor on receiver
+- NAK number refer to the next expected frame number.
+- It more often used.
 
 ![GBN sender view](gbn_sender_view.png)
 *Figure: Sender's view of sequence numbers in Go-Back-N*
@@ -408,15 +408,15 @@ Two generic forms of pipelined protocols are:
 *Figure: Go-Back-N in operation*
 
 ### Selective Repeat (SR)
-• Retransmits only those frames that are suspected to lost or damaged.
-• Comparatively less bandwidth is wasted in retransmitting.
-• More complex as it requires to apply extra logic and sorting and storage, at sender and receiver.
-• Window Size is <= (N+1)/2
-• Receiver must be able to sort as it has to maintain the sequence of the frames.
-• Receiver stores the frames received after the damaged frame in the buffer until the damaged frame is replaced.
-• The sender must be able to search and select only the requested frame.
-• NAK number refer to the frame lost.
-• It is less in practice because of its complexity.
+- Retransmits only those frames that are suspected to lost or damaged.
+- Comparatively less bandwidth is wasted in retransmitting.
+- More complex as it requires to apply extra logic and sorting and storage, at sender and receiver.
+- Window Size is <= (N+1)/2
+- Receiver must be able to sort as it has to maintain the sequence of the frames.
+- Receiver stores the frames received after the damaged frame in the buffer until the damaged frame is replaced.
+- The sender must be able to search and select only the requested frame.
+- NAK number refer to the frame lost.
+- It is less in practice because of its complexity.
 
 ![SR views](sr_views.png)
 *Figure: SR sender and receiver views of sequence number space*
@@ -442,23 +442,23 @@ It works together with IP and provides a reliable transport service between proc
 3. **Full duplex service** – This means that the communication can take place in both directions at the same time.
 
 4. **Connection oriented service** – Unlike UDP, TCP provides connection oriented service. It defines 3 different phases:
-   • Connection establishment
-   • Data transfer
-   • Connection termination
+   - Connection establishment
+   - Data transfer
+   - Connection termination
 
 5. **Reliability** – TCP is reliable as it uses checksum for error detection, attempts to recover lost or corrupted packets by re-transmission, acknowledgement policy and timers. It uses features like byte number and sequence number and acknowledgement number so as to ensure reliability. Also, it uses congestion control mechanisms.
 
 6. **Multiplexing** – TCP does multiplexing and de-multiplexing at the sender and receiver ends respectively as a number of logical connections can be established between port numbers over a physical connection.
 
 ### TCP Features
-• TCP is reliable protocol. That is, the receiver always sends either positive or negative acknowledgement about the data packet to the sender, so that the sender always has bright clue about whether the data packet is reached the destination or it needs to resend it.
-• TCP ensures that the data reaches intended destination in the same order it was sent.
-• TCP is connection oriented. TCP requires that connection between two remote points be established before sending actual data.
-• TCP provides error-checking and recovery mechanism.
-• TCP provides end-to-end communication.
-• TCP provides flow control and quality of service.
-• TCP operates in Client/Server point-to-point mode.
-• TCP provides full duplex server, i.e. it can perform roles of both receiver and sender.
+- TCP is reliable protocol. That is, the receiver always sends either positive or negative acknowledgement about the data packet to the sender, so that the sender always has bright clue about whether the data packet is reached the destination or it needs to resend it.
+- TCP ensures that the data reaches intended destination in the same order it was sent.
+- TCP is connection oriented. TCP requires that connection between two remote points be established before sending actual data.
+- TCP provides error-checking and recovery mechanism.
+- TCP provides end-to-end communication.
+- TCP provides flow control and quality of service.
+- TCP operates in Client/Server point-to-point mode.
+- TCP provides full duplex server, i.e. it can perform roles of both receiver and sender.
 
 ### TCP Segment Header
 
@@ -466,13 +466,13 @@ It works together with IP and provides a reliable transport service between proc
 
 The length of TCP header is minimum 20 bytes long and maximum 60 bytes.
 
-• **Source Port (16-bits)** - It identifies source port of the application process on the sending device.
-• **Destination Port (16-bits)** - It identifies destination port of the application process on the receiving device.
-• **Sequence Number (32-bits)** - Sequence number of data bytes of a segment in a session.
-• **Acknowledgement Number (32-bits)** - When ACK flag is set, this number contains the next sequence number of the data byte expected and works as acknowledgement of the previous data received.
-• **Data Offset (4-bits)** - This field implies both, the size of TCP header (32-bit words) and the offset of data in current packet in the whole TCP segment.
-• **Reserved (3-bits)** - Reserved for future use and all are set zero by default.
-• **Flags (1-bit each)**
+- **Source Port (16-bits)** - It identifies source port of the application process on the sending device.
+- **Destination Port (16-bits)** - It identifies destination port of the application process on the receiving device.
+- **Sequence Number (32-bits)** - Sequence number of data bytes of a segment in a session.
+- **Acknowledgement Number (32-bits)** - When ACK flag is set, this number contains the next sequence number of the data byte expected and works as acknowledgement of the previous data received.
+- **Data Offset (4-bits)** - This field implies both, the size of TCP header (32-bit words) and the offset of data in current packet in the whole TCP segment.
+- **Reserved (3-bits)** - Reserved for future use and all are set zero by default.
+- **Flags (1-bit each)**
   - **NS** - Nonce Sum bit is used by Explicit Congestion Notification signaling process.
   - **CWR** - When a host receives packet with ECE bit set, it sets Congestion Windows Reduced to acknowledge that ECE received.
   - **ECE** - It has two meanings:
@@ -487,10 +487,10 @@ The length of TCP header is minimum 20 bytes long and maximum 60 bytes.
     - It is used to restart a connection.
   - **SYN** - This flag is used to set up a connection between hosts.
   - **FIN** - This flag is used to release a connection and no more data is exchanged thereafter. Because packets with SYN and FIN flags have sequence numbers, they are processed in correct order.
-• **Windows Size** - This field is used for flow control between two stations and indicates the amount of buffer (in bytes) the receiver has allocated for a segment, i.e. how much data is the receiver expecting.
-• **Checksum** - This field contains the checksum of Header, Data and Pseudo Headers.
-• **Urgent Pointer** - It points to the urgent data byte if URG flag is set to 1.
-• **Options** - It facilitates additional options which are not covered by the regular header. Option field is always described in 32-bit words. If this field contains data less than 32-bit, padding is used to cover the remaining bits to reach 32-bit boundary.
+- **Windows Size** - This field is used for flow control between two stations and indicates the amount of buffer (in bytes) the receiver has allocated for a segment, i.e. how much data is the receiver expecting.
+- **Checksum** - This field contains the checksum of Header, Data and Pseudo Headers.
+- **Urgent Pointer** - It points to the urgent data byte if URG flag is set to 1.
+- **Options** - It facilitates additional options which are not covered by the regular header. Option field is always described in 32-bit words. If this field contains data less than 32-bit, padding is used to cover the remaining bits to reach 32-bit boundary.
 
 ## 5.6 Principles of Congestion Control
 
@@ -508,8 +508,8 @@ Considering perhaps the simplest congestion scenario possible: Two hosts (A and 
 
 #### Scenario 2: Two senders, a router with finite buffers
 Let us now slightly modify scenario 1 in the following two ways:
-• First, the amount of router buffering is assumed to be finite.
-• Second, we assume that each connection is reliable.
+- First, the amount of router buffering is assumed to be finite.
+- Second, we assume that each connection is reliable.
 
 If a packet containing a transport-level segment is dropped at the router, it will eventually be retransmitted by the sender.
 
@@ -528,9 +528,9 @@ Let us consider the connection from Host A to Host C, passing through Routers R1
 
 At the broadest level, approaches toward congestion control can be distinguished based on whether or not the network layer provides any explicit assistance to the transport layer for congestion control purposes:
 
-• **End-end congestion control**: In an end-end approach towards congestion control, the network layer provides no explicit support to the transport layer for congestion control purposes. Even the presence of congestion in the network must be inferred by the end systems based only on observed network behavior (e.g., packet loss and delay).
+- **End-end congestion control**: In an end-end approach towards congestion control, the network layer provides no explicit support to the transport layer for congestion control purposes. Even the presence of congestion in the network must be inferred by the end systems based only on observed network behavior (e.g., packet loss and delay).
 
-• **Network-assisted congestion control**: With network-assisted congestion control, network-layer components (i.e., routers) provide explicit feedback to the sender regarding the congestion state in the network. This feedback may be as simple as a single bit indicating congestion at a link.
+- **Network-assisted congestion control**: With network-assisted congestion control, network-layer components (i.e., routers) provide explicit feedback to the sender regarding the congestion state in the network. This feedback may be as simple as a single bit indicating congestion at a link.
 
 For network-assisted congestion control, congestion information is typically fed back from the network to the sender in one of two ways:
 - Direct feedback may be sent from a network router to the sender. This form of notification typically takes the form of a choke packet (essentially saying, "I'm congested!").
@@ -539,17 +539,17 @@ For network-assisted congestion control, congestion information is typically fed
 *Figure 5.6-7: Two feedback pathways for network-indicated congestion information*
 
 #### ATM ABR Congestion Control
-• Adopt ATM terminology (e.g., using the term "switch" rather than "router," and the term "call" rather than "packet").
-• With ATM ABR service, data cells are transmitted from a source to a destination through a series of intermediate switches.
-• Interspersed with the data cells are so-called RM (Resource Management) cells;
-• RM cells can be used to convey congestion-related information among the hosts and switches.
-• RM cells can thus be used to provide both direct network feedback and network-feedback-via-the-receiver.
+- Adopt ATM terminology (e.g., using the term "switch" rather than "router," and the term "call" rather than "packet").
+- With ATM ABR service, data cells are transmitted from a source to a destination through a series of intermediate switches.
+- Interspersed with the data cells are so-called RM (Resource Management) cells;
+- RM cells can be used to convey congestion-related information among the hosts and switches.
+- RM cells can thus be used to provide both direct network feedback and network-feedback-via-the-receiver.
 
 ![ATM ABR Framework](atm_abr_framework.png)
 *Figure 5.6-8: Congestion control framework for ATM ABR service*
 
-• ATM ABR congestion control is a rate-based approach. That is, the sender explicitly computes a maximum rate at which it can send and regulates itself accordingly.
-• ABR provides three mechanisms for signaling congestion-related information from the switches to the receiver:
+- ATM ABR congestion control is a rate-based approach. That is, the sender explicitly computes a maximum rate at which it can send and regulates itself accordingly.
+- ABR provides three mechanisms for signaling congestion-related information from the switches to the receiver:
   - EFCI (Explicit Forward Congestion Indication) bit.
   - CI and NI (No Increase) bits.
   - Explicit Rate (ER) setting.
@@ -562,14 +562,14 @@ An ATM ABR source adjusts the rate at which it can send cells as a function of t
 A state occurring in network layer when the message traffic is so heavy that it slows down network response time.
 
 **Effects of Congestion**
-• As delay increases, performance decreases.
-• If delay increases, retransmission occurs, making situation worse.
+- As delay increases, performance decreases.
+- If delay increases, retransmission occurs, making situation worse.
 
 ### Congestion control algorithms
 
 #### Leaky Bucket Algorithm
-• Suppose we have a bucket in which we are pouring water in a random order but we have to get water in a fixed rate, for this we will make a hole at the bottom of the bucket. It will ensure that water coming out is in a some fixed rate, and also if bucket will full we will stop pouring in it.
-• The input rate can vary, but the output rate remains constant. Similarly, in networking, a technique called leaky bucket can smooth out bursty traffic. Bursty chunks are stored in the bucket and sent out at an average rate.
+- Suppose we have a bucket in which we are pouring water in a random order but we have to get water in a fixed rate, for this we will make a hole at the bottom of the bucket. It will ensure that water coming out is in a some fixed rate, and also if bucket will full we will stop pouring in it.
+- The input rate can vary, but the output rate remains constant. Similarly, in networking, a technique called leaky bucket can smooth out bursty traffic. Bursty chunks are stored in the bucket and sent out at an average rate.
 
 In the figure, we assume that the network has committed a bandwidth of 3 Mbps for a host. The use of the leaky bucket shapes the input traffic to make it conform to this commitment. In Figure the host sends a burst of data at a rate of 12 Mbps for 2 s, for a total of 24 Mbits of data. The host is silent for 5 s and then sends data at a rate of 2 Mbps for 3 s, for a total of 6 Mbits of data. In all, the host has sent 30 Mbits of data in 10 s. The leaky bucket smooths the traffic by sending out data at a rate of 3 Mbps during the same 10 s.
 
@@ -641,8 +641,8 @@ Time required to send the 11 MB will be 11 * 0.1 = 1.1 sec
 | In practice bucket is a finite queue outputs at finite rate | If there is no token in bucket, packet cannot be sent. |
 
 **Some advantage of token Bucket over leaky bucket:**
-• If bucket is full in token Bucket, tokens are discarded not packets. While in leaky bucket, packets are discarded.
-• Token Bucket can send Large bursts at a faster rate while leaky bucket always sends packets at constant rate.
+- If bucket is full in token Bucket, tokens are discarded not packets. While in leaky bucket, packets are discarded.
+- Token Bucket can send Large bursts at a faster rate while leaky bucket always sends packets at constant rate.
 
 ### Subnetting Example Solutions
 
