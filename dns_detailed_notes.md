@@ -63,7 +63,7 @@ Think of DNS like a telephone directory:
 
 ### Why Numbers are Hard for Humans
 
-**Try This Exercise with Students**:
+**Try This Exercise**:
 - Memorize: 142.250.191.14, 31.13.64.35, 157.240.12.35
 - vs
 - Remember: google.com, facebook.com, instagram.com
@@ -132,7 +132,7 @@ Let's break this down from **right to left**:
 
 ### Reading Domain Names - Teaching Tip
 
-**Help Students Remember**: Read domain names like a postal address - from specific to general:
+**Remember**: Read domain names like a postal address - from specific to general:
 - **Domain**: `www.google.com` (specific server → company → type)
 - **Address**: "Room 101 → Building A → City → Country" (specific → general)
 
@@ -620,12 +620,16 @@ google.com.    A    142.250.191.17
 
 #### 11.2 Slow Website Loading
 **Symptoms**: Long delays before websites start loading
+
 **Cause**: Slow DNS resolution
+
 **Solution**: Change to faster DNS servers
 
 #### 11.3 Some Websites Work, Others Don't
 **Symptoms**: Google works, but company website doesn't
+
 **Cause**: DNS cache has some records but not others
+
 **Solution**: Clear DNS cache
 
 ### DNS Troubleshooting Tools
@@ -667,7 +671,7 @@ dig +trace google.com
 
 ### Fixing DNS Problems
 
-#### For Students/General Users:
+#### For General Users:
 1. **Check spelling** of website address
 2. **Try different website** to test internet connection
 3. **Restart router** (unplug for 30 seconds)
@@ -683,57 +687,6 @@ dig +trace google.com
 3. **Test from multiple locations**
 4. **Check TTL values** for recent changes
 5. **Monitor DNS query logs**
-
----
-
-## Teaching Tips and Classroom Activities
-
-### 1. Interactive DNS Lookup Exercise
-**Activity**: Have students trace DNS resolution for their favorite website
-**Tools**: Online DNS lookup tools
-**Learning**: Understanding the step-by-step process
-
-### 2. DNS Record Scavenger Hunt
-**Activity**: Students find different types of DNS records for various websites
-**Example**: "Find the MX record for your school's domain"
-**Learning**: Practical experience with DNS record types
-
-### 3. DNS Speed Comparison
-**Activity**: Students test different DNS servers and compare speeds
-**Tools**: DNS benchmark tools
-**Learning**: Understanding performance differences
-
-### 4. Create Your Own Domain Structure
-**Activity**: Students design DNS hierarchy for imaginary company
-**Example**: "Design DNS structure for 'SuperTech Corporation'"
-**Learning**: Understanding hierarchical organization
-
-### 5. DNS Security Simulation
-**Activity**: Demonstrate DNS spoofing using local network
-**Safety**: Controlled environment only
-**Learning**: Understanding security importance
-
----
-
-## Key Takeaways for Students
-
-### What Students Should Remember:
-
-1. **DNS Purpose**: Translates domain names to IP addresses
-2. **Hierarchical Structure**: Root → TLD → Domain → Subdomain
-3. **Distributed System**: No single point of failure
-4. **Caching**: Makes internet faster but can cause delays in updates
-5. **Security**: Important to use secure DNS providers
-6. **Troubleshooting**: Know basic commands and tools
-
-### Real-World Relevance:
-
-1. **Career Skills**: Essential for IT, networking, web development careers
-2. **Digital Literacy**: Understanding how internet actually works
-3. **Problem Solving**: Diagnosing internet connectivity issues
-4. **Security Awareness**: Protecting against DNS-based attacks
-5. **Business Understanding**: How companies manage their online presence
-
 ---
 
 ## Assessment Questions
@@ -752,7 +705,3 @@ dig +trace google.com
 1. How does DNS load balancing work and why is it important for large websites?
 2. Explain DNS security threats and their solutions.
 3. Design a complete DNS structure for a multinational company.
-
----
-
-This comprehensive guide provides everything needed for effective DNS teaching and learning, with practical examples, real-world applications, and hands-on activities that make the technical concepts accessible and engaging for students.
