@@ -16,7 +16,7 @@ The Data Link Layer is the second layer in the OSI model, situated between the P
 
 The IEEE has divided the data link layer into two sublayers:
 
-![Data Link Layer Sublayers](https://i.imgur.com/MFnBxgE.png)
+![Data Link Layer Sublayers](/images/data-link-layer.jpg)
 
 1. **Logical Link Control (LLC) Sublayer**:
    - Provides interface to network layer
@@ -119,8 +119,8 @@ Byte stuffing (also called character stuffing) is used in byte-oriented protocol
 **Example**:
 - Delimiter: FLAG (01111110)
 - Escape character: ESC (00011011)
-- Original data: A•B•FLAG•C•ESC•D (where • represents any byte)
-- Transmitted data: A•B•ESC•FLAG•C•ESC•ESC•D
+- Original data: A???B???FLAG???C???ESC???D (where ??? represents any byte)
+- Transmitted data: A???B???ESC???FLAG???C???ESC???ESC???D
 - Receiver removes escape characters to recover original data
 
 #### Bit Stuffing:
@@ -199,17 +199,17 @@ Flow control methods can be categorized based on channel conditions:
 **Efficiency Calculation**:
 - Let Tt = transmission time for a frame
 - Let Tp = propagation time (one-way)
-- Total cycle time = Tt + 2Tp + Tack (≈ Tt + 2Tp if Tack is small)
+- Total cycle time = Tt + 2Tp + Tack (??? Tt + 2Tp if Tack is small)
 - Utilization = Tt / (Tt + 2Tp)
 
 **Numerical Example**:
 - Frame size = 1000 bits
 - Bandwidth = 1 Mbps
 - Distance = 1000 km
-- Propagation speed = 2 × 10⁸ m/s
+- Propagation speed = 2 ?? 10??? m/s
 - Tt = 1000 bits / 1 Mbps = 1 ms
-- Tp = 1000 km / (2 × 10⁸ m/s) = 5 ms
-- Utilization = 1 / (1 + 2×5) = 1/11 = 9.09%
+- Tp = 1000 km / (2 ?? 10??? m/s) = 5 ms
+- Utilization = 1 / (1 + 2??5) = 1/11 = 9.09%
 
 #### Stop-and-Wait ARQ (For Noisy Channels):
 
@@ -261,8 +261,8 @@ To improve efficiency, we can send multiple frames before waiting for acknowledg
 In Go-Back-N ARQ, the sender can have up to N unacknowledged frames outstanding.
 
 **Mechanism**:
-- Uses sequence numbers modulo-2ᵐ (m is number of bits in sequence field)
-- Sender window size: 2ᵐ-1
+- Uses sequence numbers modulo-2??? (m is number of bits in sequence field)
+- Sender window size: 2???-1
 - Receiver window size: 1 (accepts only in-sequence frames)
 - Cumulative acknowledgments (ACK n means all frames up to n-1 received)
 - If error detected, receiver discards all subsequent frames
@@ -299,9 +299,9 @@ In Go-Back-N ARQ, the sender can have up to N unacknowledged frames outstanding.
 Selective Repeat ARQ improves efficiency by only retransmitting frames that are actually lost or damaged.
 
 **Mechanism**:
-- Uses sequence numbers modulo-2ᵐ
-- Sender window size: 2ᵐ⁻¹
-- Receiver window size: 2ᵐ⁻¹
+- Uses sequence numbers modulo-2???
+- Sender window size: 2????????
+- Receiver window size: 2????????
 - Individual acknowledgments for each frame
 - Receiver accepts and buffers out-of-sequence frames
 - Sender retransmits only specific frames that are not acknowledged
@@ -328,7 +328,7 @@ Selective Repeat ARQ improves efficiency by only retransmitting frames that are 
    - Receiver accepts frame 1, delivers frames 0-3 in order
    - Process continues normally
 
-**Why Window Size Must Be ≤ 2ᵐ⁻¹**:
+**Why Window Size Must Be ??? 2????????**:
 - To avoid ambiguity in sequence numbers
 - Example: With m=3 (sequence numbers 0-7):
   - If window size > 4, sequence numbers could be ambiguous
@@ -409,7 +409,7 @@ Error control in the data link layer involves both error detection and correctio
   - Wrap extra bits: 00100011 + 10 = 00100101
   - Checksum (complement): 11011010
   - Transmitted: original data + 11011010
-  - Verification: sum all segments + checksum = 11111111 → complement = 00000000 (no error)
+  - Verification: sum all segments + checksum = 11111111 ??? complement = 00000000 (no error)
 
 **Operation on Sender side**
 - Break the original message into `k` number of blocks with n bits in each block
@@ -446,7 +446,7 @@ Error control in the data link layer involves both error detection and correctio
 
 **Example**:
 - Data: 101100
-- Generator polynomial G(x) = x³ + x + 1 → 1011
+- Generator polynomial G(x) = x?? + x + 1 ??? 1011
 - Append 3 zeros: 101100000
 - Division process:
   ```
@@ -517,22 +517,22 @@ Hamming code is a linear error-correcting code that can detect up to two-bit err
 **Example**:
 For 7-bit data 1011001:
 
-1. Need 4 parity bits (positions 1, 2, 4, 8) as 2³ < 11 ≤ 2⁴
+1. Need 4 parity bits (positions 1, 2, 4, 8) as 2?? < 11 ??? 2???
 2. Place data bits in non-parity positions: _ _ 1 _ 0 1 1 _ 0 0 1
 3. Calculate parity bits (using even parity):
-   - P1: checks bits 1, 3, 5, 7, 9, 11 → 1+0+1+0+1 = 3 (odd) → P1 = 1
-   - P2: checks bits 2, 3, 6, 7, 10, 11 → 1+1+1+0+1 = 4 (even) → P2 = 0
-   - P4: checks bits 4, 5, 6, 7 → 0+1+1 = 2 (even) → P4 = 0
-   - P8: checks bits 8, 9, 10, 11 → 0+0+1 = 1 (odd) → P8 = 1
+   - P1: checks bits 1, 3, 5, 7, 9, 11 ??? 1+0+1+0+1 = 3 (odd) ??? P1 = 1
+   - P2: checks bits 2, 3, 6, 7, 10, 11 ??? 1+1+1+0+1 = 4 (even) ??? P2 = 0
+   - P4: checks bits 4, 5, 6, 7 ??? 0+1+1 = 2 (even) ??? P4 = 0
+   - P8: checks bits 8, 9, 10, 11 ??? 0+0+1 = 1 (odd) ??? P8 = 1
 4. Complete code: 10100110001
 
 If bit 6 changes to 0 during transmission:
 1. Received code: 10100010001
 2. Parity checks:
-   - P1: 1+1+0+1+0+1 = 4 (even) → Passes
-   - P2: 0+1+0+1+0+1 = 3 (odd) → Fails
-   - P4: 0+0+0+1 = 1 (odd) → Fails
-   - P8: 1+0+0+1 = 2 (even) → Passes
+   - P1: 1+1+0+1+0+1 = 4 (even) ??? Passes
+   - P2: 0+1+0+1+0+1 = 3 (odd) ??? Fails
+   - P4: 0+0+0+1 = 1 (odd) ??? Fails
+   - P8: 1+0+0+1 = 2 (even) ??? Passes
 3. Error position: 0110 (binary) = 6 (decimal)
 4. Bit 6 is flipped to correct the error
 
@@ -758,8 +758,8 @@ In this, multiple stations can transmit data at the same time and can hence lead
 * If the first bit of a new frame overlaps with just the last bit of a frame almost finished, both frames will be totally destroyed and both will have to be retransmitted later
 
 - If collision occurs, retry after random time
-- Vulnerable period: 2 × frame transmission time
-- Throughput: S = G × e^(-2G)
+- Vulnerable period: 2 ?? frame transmission time
+- Throughput: S = G ?? e^(-2G)
 - Maximum throughput: 18.4% when G = 0.5
 
 ![Pure ALOHA](/images/pure%20aloha.png)
@@ -776,7 +776,7 @@ In this, multiple stations can transmit data at the same time and can hence lead
 - Time divided into discrete slots equal to frame transmission time
 - Stations can only begin transmission at slot boundaries
 - Vulnerable period: 1 frame transmission time
-- Throughput: S = G × e^(-G)
+- Throughput: S = G ?? e^(-G)
 - Maximum throughput: 36.8% when G = 1
 
 ![Slotted ALOHA](/images/slotted%20aloha%20slot.png)
@@ -859,7 +859,7 @@ CSMA/CD extends CSMA by detecting collisions during transmission.
 ![CSMA/CD Process](/images/csma%20cd.png)
 
 **Key Requirement**:
-- Minimum frame time ≥ 2 × maximum propagation time
+- Minimum frame time ??? 2 ?? maximum propagation time
 - Ensures collisions are detected before transmission completes
 
 **Example**: Ethernet (IEEE 802.3)
@@ -1052,7 +1052,7 @@ The assigned codes have two properties:
 
 Example:
 
-Data = (d₁.c₁ + d₂.c₂ + d₃.c₃+ d₄.c₄)Xc₁ = 4 x d₁
+Data = (d???.c??? + d???.c??? + d???.c???+ d???.c???)Xc??? = 4 x d???
 
 **Characteristics**:
 - Based on spread spectrum technology
@@ -1369,13 +1369,13 @@ Bluetooth uses a layered protocol architecture:
 * Bluetooth is specified by an industry consortium called the Bluetooth
 Special Interest Group.
 * It specifies an entire suite of protocols, going beyond the link layer to define application protocols, which it calls profiles, for a range of applications.
-• There is a profile for synchronizing a PDA with personal computer.
-• Another profile gives a mobile computer access to a wired LAN.
+??? There is a profile for synchronizing a PDA with personal computer.
+??? Another profile gives a mobile computer access to a wired LAN.
 * The basic Bluetooth network configuration is called a piconet.
-• Consists of a master device and up to seven slave devices.
-• Any communication is between the master and a slave.
-• The slaves do not communicate directly with each other.
-• A slave can be parked: set to an inactive, low-power state.
+??? Consists of a master device and up to seven slave devices.
+??? Any communication is between the master and a slave.
+??? The slaves do not communicate directly with each other.
+??? A slave can be parked: set to an inactive, low-power state.
 
 ![Bluetooth Protocol Stack](/images/Basic-diagram-of-Bluetooth-protocol-stack.png)
 
@@ -1590,7 +1590,7 @@ Understanding these concepts provides the foundation for reliable data communica
 
    c. Channel utilization
 
-3. Using CRC with generator polynomial x³ + x + 1, compute the CRC for data 10110.
+3. Using CRC with generator polynomial x?? + x + 1, compute the CRC for data 10110.
 
 4. For a 7-bit data 1010101, calculate the Hamming code with even parity.
 
