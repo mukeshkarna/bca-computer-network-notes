@@ -506,7 +506,7 @@ Hamming code is a linear error-correcting code that can detect up to two-bit err
    - P8 (position 8): checks bits 8, 9, 10, 11, 12...
 5. Each parity bit is set to make the parity of its group even (or odd)
 
-![Hamming Code Bit Positions](https://i.imgur.com/9nfvqRT.png)
+![Hamming Code Bit Positions](/images/hamming-code.png)
 
 **Error Detection and Correction**:
 1. Calculate all parity bits
@@ -526,6 +526,8 @@ For 7-bit data 1011001:
    - P8: checks bits 8, 9, 10, 11 -> 0+0+1 = 1 (odd) -> P8 = 1
 4. Complete code: 10100110001
 
+![Hamming Code Error detection](/images/hc-err-d-1.png)
+
 If bit 6 changes to 0 during transmission:
 1. Received code: 10100010001
 2. Parity checks:
@@ -535,6 +537,8 @@ If bit 6 changes to 0 during transmission:
    - P8: 1+0+0+1 = 2 (even) -> Passes
 3. Error position: 0110 (binary) = 6 (decimal)
 4. Bit 6 is flipped to correct the error
+
+![Hamming Code Error correction](/images/hc-err-d-2.png)
 
 ## 3.4 High-Level Data Link Control (HDLC) & Point-to-Point Protocol (PPP)
 
